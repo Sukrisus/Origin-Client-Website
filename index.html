@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Origin Client</title>
+
+  <!-- Import Coolvetica Font -->
+  <style>
+    @font-face {
+      font-family: 'Coolvetica';
+      src: url('Coolvetica.otf') format('opentype'); /* Correctly use Coolvetica font */
+    }
+
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Coolvetica', sans-serif; /* Use Coolvetica font */
+      color: #fff;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #2a2a2a, #000000); /* Dark gradient background */
+      background-size: 400% 400%;
+      animation: gradientGlow 15s ease infinite;
+      scroll-behavior: smooth;
+    }
+
+    /* Background Animation */
+    @keyframes gradientGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animations */
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Layout */
+    body {
+      animation: fadeInPage 1s ease forwards;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      animation: slideUp 1.5s ease forwards;
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      opacity: 1;
+      animation: fadeInPage 1.2s ease forwards; /* Smooth fade-in animation */
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+      animation: slideUp 1.8s ease forwards;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      background: transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 12px rgba(255,255,255,0.05);
+    }
+    nav a:hover {
+      background: #444;
+      color: #fff;
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    main {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(30, 30, 30, 0.85);
+      margin: 40px auto;
+      border-radius: 20px;
+      padding: 35px 25px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      animation: slideUp 2s ease forwards;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 8px;
+      animation: slideUp 2.1s ease forwards;
+    }
+    section p {
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.7;
+      animation: fadeInPage 2s ease forwards;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+      animation: slideUp 2.2s ease forwards;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 12px; /* Adjusted smaller radius for buttons */
+      background: #333;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); /* Glow effect */
+      cursor: pointer;
+      transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: #555;
+      color: #fff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 40px rgba(255, 255, 255, 0.3); /* More prominent glow on hover */
+    }
+    button:active {
+      background: #444;
+      transform: scale(0.97);
+      transition: transform 0.15s ease;
+      box-shadow: 0 8px 50px rgba(255, 255, 255, 0.4); /* Intense glow on click */
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+      animation: fadeInPage 2.5s ease forwards;
+    }
+
+    /* Links Section */
+    .links-section {
+      margin-top: 30px;
+      background: rgba(40, 40, 40, 0.85);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .links-section a {
+      display: block;
+      color: #fff;
+      font-size: 1.2rem;
+      margin: 10px 0;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      background: #444;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .links-section a:hover {
+      background: #555;
+    }
+
+    /* Changelog Section */
+    .changelog-section {
+      visibility: hidden; /* Hide Changelog section initially */
+      height: 0; /* Set height to 0 to ensure it doesn't take space */
+      overflow: hidden; /* Hide any overflow from the hidden section */
+      transition: visibility 0.5s ease, height 0.5s ease; /* Smooth transition */
+    }
+
+    .changelog-section.visible {
+      visibility: visible;
+      height: auto; /* Restore height when it's visible */
+    }
+
+    .changelog-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .changelog-section p {
+      font-size: 1.2rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Origin Client</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#" id="linksButton">Links</a> <!-- "Links" button now scrolls smoothly to the links section -->
+    <a href="" target="_blank">Store</a> <!-- Replaced Textures with Store button -->
+  </nav>
+
+  <main>
+    <section>
+      <h2>Welcome to Origin</h2>
+      <p>Origin Client A smooth Real utility client for Minecraft PE, clean experience for Minecraft Bedrock Edition players. Fully optimized for mobile gameplay with a clean style.</p>
+    </section>
+
+    <section>
+      <h2>Latest News</h2>
+      <p>New addition: Origin launcher, inbuilt mod installer, and Cosmetic store. Keep your Origin experience fresh and powerful!</p>
+    </section>
+
+    <div class="button-group">
+      <button onclick="window.location.href=''">Download</button> <!-- Changed to download link -->
+      <button id="changelogButton">View Changelog</button> <!-- View Changelog button -->
+    </div>
+  </main>
+
+  <!-- Links Section -->
+  <section class="links-section" id="linksSection">
+    <h2>Useful Links</h2>
+    <a href="https://github.com/sukrisus" target="_blank">GitHub</a>
+    <a href="https://discord.gg/VzPzW8ycKh" target="_blank">Discord</a>
+    <a href="https://youtube.com/@Sucidal-yami" target="_blank">YouTube</a> <!-- Replaced Official Website with YouTube -->
+  </section>
+
+  <!-- Changelog Section -->
+  <section class="changelog-section" id="changelogSection">
+    <h2>Changelog</h2>
+    <p>Version 2.0.0 - Released on April 25, 2025</p>
+    <ul>
+      <li>improved mod menu</li>
+      <li>added launcher</li>
+      <li>improved website</li>
+      <li>improved ui</li>
+      <li>inbuild addon installer</li>
+      <li>Cosmetic store</li>
+      <li>200+ new stuff</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Origin Client. All rights reserved.
+  </footer>
+
+  <script>
+    // Smooth scroll to the Links section
+    document.getElementById("linksButton").addEventListener("click", function() {
+      document.getElementById("linksSection").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    // Show the Changelog section when the "View Changelog" button is clicked
+    document.getElementById("changelogButton").addEventListener("click", function() {
+      var changelogSection = document.getElementById("changelogSection");
+      changelogSection.classList.add("visible"); // Make the section visible with smooth transition
+      changelogSection.scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  </script>
+
+</body>
+</html>
